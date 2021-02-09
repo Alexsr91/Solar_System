@@ -24,11 +24,16 @@ class Navbar extends React.Component {
     render() {
         return (
             <div className="navbar">
-                <div>LOGO</div>
-                <div>
-                    <button data-toggle="modal" data-target="#signupModal" onClick={this.signUpHandler}>Register</button>
-                    <button onClick={this.logingHandler}>Login</button>
+                <div className="nav-content">
+                    <div className="logo">SOLAR X</div>
+                    <div>
 
+                        <a onClick={this.logingHandler}>Login</a>
+                        <a onClick={this.signUpHandler}>Register</a>
+                        
+                        
+
+                    </div>
                 </div>
 
                 {this.state.displaySignup&& <Signup></Signup>}

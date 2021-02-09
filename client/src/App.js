@@ -4,9 +4,10 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 //Components
-import Planet from './components/Planetlist/Planet'
+// import Planet from './components/Planetlist/Planet'
 import Navbar from './components/NavBar'
 import Signup from './components/Signup'
+import Planet from './components/Planetlist/Planet'
 
 class App extends Component {
 
@@ -69,11 +70,7 @@ class App extends Component {
           </Route>
           <Route path="/:planetID" render={(props) => <Planet key={props.match.params.planetID} match={props.match}></Planet>}></Route>
         </Switch>
-
-
-
-
-
+        
       </div>
     );
   }
