@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-const DB_NAME = 'solar-system';
-
-mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
+mongoose.connect(process.env.MONGODB_URI, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true
