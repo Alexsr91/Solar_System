@@ -2,11 +2,10 @@ import './App.css';
 import { Route, Link, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import Home from './components/Home'
 //Components
 // import Planet from './components/Planetlist/Planet'
 import Navbar from './components/NavBar'
-import Signup from './components/Signup'
 import Planet from './components/Planetlist/Planet'
 
 class App extends Component {
@@ -28,7 +27,7 @@ class App extends Component {
           loading: false
         })
 
-      })
+      }).catch(error=>{console.log("Something erroooooooor!!!", error);})
   }
 
   updateCurrentUser = (userObjFromBackend) => {
@@ -52,23 +51,15 @@ class App extends Component {
 
     return (
       <div>
-        <Navbar currentUser={this.state.currentUser} updateCurrentUser={this.updateCurrentUser}></Navbar>
+        <Navbar planets={this.state.fromLocal} currentUser={this.state.currentUser} updateCurrentUser={this.updateCurrentUser}></Navbar>
 
         {this.state.currentUser && <p>Hello Mr. {this.state.currentUser.username}</p>}
 
-
         <Switch>
-          <Route path="/home" >
-            <p>Home Page, Hello :-)</p>
-            {this.state.fromLocal.map((planetObj) => {
-              return (
-                <div>
-                  <Link to={planetObj._id}>{planetObj.apiReferenceId}</Link>
-                </div>
-              )
-            })}
+          <Route exact path="/" component={Home}>
+          
           </Route>
-          <Route path="/:planetID" render={(props) => <Planet key={props.match.params.planetID} match={props.match}></Planet>}></Route>
+          <Route exact path="/:planetID" render={(props) => <Planet key={props.match.params.planetID} match={props.match}></Planet>}></Route>
         </Switch>
         
       </div>
